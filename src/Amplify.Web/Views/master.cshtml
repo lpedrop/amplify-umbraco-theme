@@ -88,7 +88,13 @@
         @RenderBody()
     </main>
 
-    @Html.Partial($"~/Views/Partials/Footer.cshtml", siteConfig.Footer)
+    @{
+        var hideFooter = Model.Value<bool>("hideFooter");
+        if (!hideFooter)
+        {
+            @Html.Partial($"~/Views/Partials/Footer.cshtml", siteConfig.Footer)
+        }
+    }
 
     @if (siteConfig.AppConfig.HasValue())
     {
